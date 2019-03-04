@@ -33,6 +33,7 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
             throw new PopEmptyStackException("Pop Empty Stack Exception: Failed to pop item from empty stack.");
         } else {
             Item item = this.items[top - 1];
+            this.items[top - 1] = null;
             top -= 1;
             if (this.top * 2 == this.items.length) {
                 this.resize(this.items.length / 2);
