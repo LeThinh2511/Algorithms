@@ -8,8 +8,8 @@ import java.util.Iterator;
  */
 
 public class LinkedList<Item> implements Iterable<Item> {
-    Node first;
-    int size;
+    private Node first;
+    private int size;
 
     public LinkedList() {
         this.first = null;
