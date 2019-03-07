@@ -114,6 +114,38 @@ public class LinkedList<Item> implements Iterable<Item> {
         return (Item) node.item;
     }
 
+    public void reverseRecursive() {
+        if (this.first == null) {
+            return;
+        }
+        if (this.first.next == null) {
+            return;
+        }
+        Node oldFirstNode = this.first;
+        Node secondNode = this.first.next;
+        this.first = this.first.next;
+        this.reverseRecursive();
+        oldFirstNode.next = null;
+        secondNode.next = oldFirstNode;
+    }
+
+    public void reverse() {
+        if (this.first == null) {
+            return;
+        }
+        Node newFirstNode = this.first;
+        Node secondNode = this.first.next;
+        this.first = secondNode;
+        newFirstNode.next = null;
+        while (this.first.next != null) {
+            secondNode = secondNode.next;
+            this.first.next = newFirstNode;
+            newFirstNode = this.first;
+            this.first = secondNode;
+        }
+        this.first.next = newFirstNode;
+    }
+
     private Node getNodeAt(int index) {
         if (index >= this.size) {
             throw new LinkedListIndexOutOfBoundsException("Index out of bound exception: Failed to get item from invalid index.");
