@@ -1,4 +1,4 @@
-package exercises;
+package exercises.Exercise1334;
 
 import java.util.Iterator;
 import java.util.Random;

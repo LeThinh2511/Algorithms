@@ -1,4 +1,4 @@
-package exercises;
+package exercises.Exercise1334;
 
 /**
  * Author: thinhle
