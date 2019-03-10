@@ -18,6 +18,15 @@ public class Queue<Item> implements Iterable<Item> {
         this.size = 0;
     }
 
+    public Queue(Queue<Item> queue) {
+        this.headNode = null;
+        this.tailNode = null;
+        this.size = 0;
+        for (Item item : queue) {
+            this.enqueue(item);
+        }
+    }
+
     public boolean isEmpty() {
         return this.size == 0;
     }
