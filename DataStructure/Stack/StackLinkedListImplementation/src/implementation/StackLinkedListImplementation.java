@@ -8,7 +8,18 @@ import java.util.Iterator;
  */
 
 public class StackLinkedListImplementation<Item> implements Iterable<Item> {
-    private LinkedList<Item> linkedList = new LinkedList<>();
+    private LinkedList<Item> linkedList;
+
+    public StackLinkedListImplementation() {
+        this.linkedList = new LinkedList<>();
+    }
+
+    public StackLinkedListImplementation(StackLinkedListImplementation<Item> stack) {
+        this.linkedList = new LinkedList<>();
+        for (Item item : stack.linkedList) {
+            this.linkedList.insertAtTheEnd(item);
+        }
+    }
 
     public boolean isEmpty() {
         return this.linkedList.isEmpty();
@@ -32,12 +43,12 @@ public class StackLinkedListImplementation<Item> implements Iterable<Item> {
 
             @Override
             public boolean hasNext() {
-                return index < linkedList.size();
+                return index > 0;
             }
 
             @Override
             public Item next() {
-                return linkedList.get(index);
+                return linkedList.get(--index);
             }
         };
     }
