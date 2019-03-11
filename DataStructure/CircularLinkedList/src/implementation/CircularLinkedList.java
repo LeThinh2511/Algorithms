@@ -7,7 +7,7 @@ import java.util.Iterator;
  * Date: 2019-03-09
  */
 
-public class CircularLinkedList<Item> {
+public class CircularLinkedList<Item> implements Iterable<Item> {
     private Node last;
     private int size;
 
@@ -145,6 +145,45 @@ public class CircularLinkedList<Item> {
         this.last.next = node.next;
         this.size -= 1;
         return (Item) node.item;
+    }
+
+    public Item getItemAt(int index) {
+        if (this.size <= index || index < 0) {
+            throw new IndexCircularLinkedListOutOfBoundsException();
+        }
+        if (this.size == 1) {
+            return (Item) this.last.item;
+        }
+        Node currentNode = this.last.next;
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+        return (Item) currentNode.item;
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new Iterator<Item>() {
+            private int count = size;
+            private Node currentNode = last;
+
+            @Override
+            public boolean hasNext() {
+                return this.count > 0;
+            }
+
+            @Override
+            public Item next() {
+                if (size == 1) {
+                    this.count -= 1;
+                    return (Item) last.item;
+                } else {
+                    currentNode = currentNode.next;
+                    this.count -= 1;
+                    return (Item) currentNode.item;
+                }
+            }
+        };
     }
 
     private Node getNodeAt(int index) {
