@@ -58,6 +58,15 @@ public class Queue<Item> implements Iterable<Item> {
         return oldHeadNode.item;
     }
 
+    public void concatenate(Queue<Item> queue) {
+        if (queue == null) {
+            return;
+        }
+        this.tailNode.next = queue.headNode;
+        this.tailNode = queue.tailNode;
+        this.size += queue.size;
+    }
+
     @Override
     public Iterator<Item> iterator() {
         return new Iterator<Item>() {
