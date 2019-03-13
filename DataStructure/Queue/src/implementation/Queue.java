@@ -1,5 +1,6 @@
 package implementation;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 /**
@@ -70,15 +71,22 @@ public class Queue<Item> implements Iterable<Item> {
     @Override
     public Iterator<Item> iterator() {
         return new Iterator<Item>() {
-
             private Node<Item> currentNode = headNode;
+            private int size = size();
+
             @Override
             public boolean hasNext() {
+                if (this.size != size()) {
+                    throw new ConcurrentModificationException();
+                }
                 return currentNode != null;
             }
 
             @Override
             public Item next() {
+                if (this.size != size()) {
+                    throw new ConcurrentModificationException();
+                }
                 Node node = currentNode;
                 currentNode = currentNode.next;
                 return (Item) node.item;
