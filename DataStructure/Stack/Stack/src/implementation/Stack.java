@@ -1,5 +1,6 @@
 package implementation;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 /**
@@ -74,13 +75,21 @@ public class Stack<Item> implements Iterable<Item> {
     public Iterator<Item> iterator() {
         return new Iterator<Item>() {
             private Node currentNode = top;
+            private int size = remains;
+
             @Override
             public boolean hasNext() {
+                if (this.size != remains) {
+                    throw new ConcurrentModificationException();
+                }
                 return currentNode != null;
             }
 
             @Override
             public Item next() {
+                if (this.size != remains) {
+                    throw new ConcurrentModificationException();
+                }
                 Node node = currentNode;
                 currentNode = currentNode.next;
                 return (Item) node.item;
