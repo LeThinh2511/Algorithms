@@ -8,10 +8,25 @@ package implementation;
 public class FixedCapacityStack<Item> {
     private Item[] items;
     private int top;
+    private int capacity;
 
     public FixedCapacityStack(int capacity) {
         this.items = (Item[]) new Object[capacity];
         this.top = 0;
+        this.capacity = capacity;
+    }
+
+    public FixedCapacityStack(FixedCapacityStack<Item> stack) {
+        this.items = (Item[]) new Object[stack.capacity()];
+        this.capacity = stack.capacity();
+        this.top = stack.top;
+        for (int i = 0; i < stack.top; i++) {
+            this.items[i] = stack.items[i];
+        }
+    }
+
+    public int capacity() {
+        return this.capacity;
     }
 
     public boolean isEmpty() {
