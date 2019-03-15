@@ -76,6 +76,20 @@ public class RandomBag<Item> implements Iterable<Item> {
         return newRandomBag;
     }
 
+    public void mix(RandomBag<Item> randomBag) {
+        if (this.remains + randomBag.remains > this.capacity) {
+            throw new FullBagException();
+        }
+        Node<Item> currentNode = this.first;
+        while (currentNode.next != null) {
+            currentNode = currentNode.next;
+        }
+        currentNode.next = randomBag.first;
+        this.remains += randomBag.remains();
+        randomBag.remains = 0;
+        randomBag.first = null;
+    }
+
     @Override
     public Iterator<Item> iterator() {
         return new BagIterator<>();
