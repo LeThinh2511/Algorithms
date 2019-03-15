@@ -64,6 +64,18 @@ public class RandomBag<Item> implements Iterable<Item> {
         return (Item) node.item;
     }
 
+    public RandomBag<Item> clone() {
+        int capacity = this.capacity;
+        RandomBag<Item> newRandomBag = new RandomBag<>(capacity);
+        Node<Item> currentNode = this.first;
+        while (currentNode != null) {
+            Item item = currentNode.item;
+            newRandomBag.add(item);
+            currentNode = currentNode.next;
+        }
+        return newRandomBag;
+    }
+
     @Override
     public Iterator<Item> iterator() {
         return new BagIterator<>();
