@@ -16,6 +16,16 @@ public class Bag<Item> implements Iterable<Item> {
         this.size = 0;
     }
 
+    public Bag(Bag bag) {
+        Node<Item> currentNode = bag.first;
+        while (currentNode != null) {
+            Item item = currentNode.item;
+            this.add(item);
+            currentNode = currentNode.next;
+        }
+        this.size = bag.size();
+    }
+
     public boolean isEmpty() {
         return this.size == 0;
     }
