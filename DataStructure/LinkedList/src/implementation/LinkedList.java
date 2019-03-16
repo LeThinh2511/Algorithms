@@ -26,7 +26,7 @@ public class LinkedList<Item> implements Iterable<Item> {
 
     public void insert(Item item, int index) {
         if (index > this.size || index < 0) {
-            throw new LinkedListIndexOutOfBoundsException("Index out of bound exception: Failed to insert item to invalid index.");
+            throw new LinkedListIndexOutOfBoundsException();
         }
         if (index == 0) {
             this.insertAtTheBeginning(item);
@@ -66,7 +66,7 @@ public class LinkedList<Item> implements Iterable<Item> {
 
     public Item removeAt(int index) {
         if (index >= this.size || index < 0) {
-            throw new LinkedListIndexOutOfBoundsException("Index out of bound exception: Failed to remove item from invalid index.");
+            throw new LinkedListIndexOutOfBoundsException();
         }
         if (index == 0) {
             return this.removeAtTheBeginning();
@@ -83,7 +83,7 @@ public class LinkedList<Item> implements Iterable<Item> {
 
     public Item removeAtTheBeginning() {
         if (this.isEmpty()) {
-            throw new LinkedListIndexOutOfBoundsException("Index out of bound exception: Failed to remove item from empty linked list");
+            throw new LinkedListIndexOutOfBoundsException();
         }
         Node firstNode = this.first;
         this.first = this.first.next;
@@ -93,7 +93,7 @@ public class LinkedList<Item> implements Iterable<Item> {
 
     public Item removeAtTheEnd() {
         if (this.isEmpty()) {
-            throw new LinkedListIndexOutOfBoundsException("Index out of bound exception: Failed to remove item from empty linked list");
+            throw new LinkedListIndexOutOfBoundsException();
         }
         if (this.size == 1) {
             Node endNode = this.first;
@@ -148,7 +148,7 @@ public class LinkedList<Item> implements Iterable<Item> {
 
     private Node getNodeAt(int index) {
         if (index >= this.size) {
-            throw new LinkedListIndexOutOfBoundsException("Index out of bound exception: Failed to get item from invalid index.");
+            throw new LinkedListIndexOutOfBoundsException();
         }
         Node currentNode = this.first;
         for (int i = 0; i < index; i++) {

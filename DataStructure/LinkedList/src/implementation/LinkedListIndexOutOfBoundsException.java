@@ -6,7 +6,7 @@ package implementation;
  */
 
 public class LinkedListIndexOutOfBoundsException extends RuntimeException {
-    public LinkedListIndexOutOfBoundsException(String message) {
-        super(message);
+    public LinkedListIndexOutOfBoundsException() {
+        super("Index out of bound exception: Failed to access item from invalid index.");
     }
 }
