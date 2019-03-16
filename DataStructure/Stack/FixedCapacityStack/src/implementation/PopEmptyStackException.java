@@ -6,7 +6,7 @@ package implementation;
  */
 
 public class PopEmptyStackException extends RuntimeException {
-    public PopEmptyStackException(String message) {
-        super(message);
+    public PopEmptyStackException() {
+        super("Pop empty stack exception: Failed to pop item from empty stack.");
     }
 }

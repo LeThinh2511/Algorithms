@@ -39,7 +39,7 @@ public class FixedCapacityStack<Item> {
 
     public void push(Item item) {
         if (this.isFull()) {
-            throw new StackOverflowException("Stack overflow Exception: Failed to push item to the full stack.");
+            throw new StackOverflowException();
         } else {
             this.items[top] = item;
             top += 1;
@@ -48,7 +48,7 @@ public class FixedCapacityStack<Item> {
 
     public Item pop() {
         if (this.isEmpty()) {
-            throw new PopEmptyStackException("Pop empty stack exception: Failed to pop item from empty stack.");
+            throw new PopEmptyStackException();
         } else {
             top -= 1;
             return this.items[top];

@@ -6,7 +6,7 @@ package implementation;
  */
 
 public class StackOverflowException extends RuntimeException {
-    public StackOverflowException(String message) {
-        super(message);
+    public StackOverflowException() {
+        super("Stack overflow Exception: Failed to push item to the full stack.");
     }
 }
