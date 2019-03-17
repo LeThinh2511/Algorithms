@@ -146,6 +146,13 @@ public class LinkedList<Item> implements Iterable<Item> {
         this.first.next = newFirstNode;
     }
 
+    public void concatenate(LinkedList<Item> linkedList) {
+        Node<Item> lastNode = this.getNodeAt(this.size - 1);
+        lastNode.next = linkedList.first;
+        linkedList.first = null;
+        this.size += linkedList.size;
+    }
+
     private Node getNodeAt(int index) {
         if (index >= this.size) {
             throw new LinkedListIndexOutOfBoundsException();
